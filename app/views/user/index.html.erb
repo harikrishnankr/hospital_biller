@@ -1,0 +1,7 @@
+<h1>Sign <span style="color:red;">in</span></h1><br><br>
+<%= form_tag(user_sign_in_path, method: :post)%>
+     <%=label_tag :username %><br>
+     <%= text_field_tag :username %><br><br>
+     <%=label_tag :password %><br>
+     <%=password_field_tag :password %><br><br>
+<%=submit_tag "Log in", :class=>"btn btn-primary"%>

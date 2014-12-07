@@ -1,0 +1,24 @@
+<h1>receptionist are shown below</h1>
+ <%= link_to supervisor_index_path do%>
+      <span class="btn btn-primary"><i class="icon-step-backward"></i>back</span>
+ <%end%>
+ <br><br>
+ <table class="table table-hover table-bordered">
+  <tr>
+    <th>Name</th>
+    <th>Username</th>
+    <th>Email</th>
+    <th>Phone</th>
+    <th>Delete</th>
+  </tr>
+ 
+  <% @details.each do |d| %>
+    <tr>
+      <td><%= d.name %></td>
+      <td><%= d.username %></td>
+      <td><%= d.email %></td>
+      <td><%= d.phone%></td>
+      <td><%=link_to "Delete","/receptionnist/delete/#{d.id}",method: :post,:class=>"btn btn-mini btn-danger"%></td>
+    </tr>
+  <% end %>
+</table>

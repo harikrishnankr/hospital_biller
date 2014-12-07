@@ -1,0 +1,28 @@
+<h1>update your details</h1>
+ <%= link_to supervisor_index_path do%>
+      <span>back</span>
+ <%end%>
+<%= form_for @user=User.new, :url=>supervisor_getupdate_path, method: :post do |form| %>
+   <%= form.label :name %><br>
+   <%= form.text_field :name %><br><br>
+ 
+   <%= form.label :username %><br>
+   <%= form.text_field :username %><br><br>
+
+   <%= form.label :password %><br>
+   <%= form.password_field :password %><br><br>
+
+   <%= form.label :password_confirmation %><br>
+   <%= form.password_field :password_confirmation %><br><br>
+ 
+   <%= form.label :Email %><br>
+   <%= form.email_field :email %><br><br> 
+
+   <%= form.label :phone_number %><br>
+   <%= form.number_field :phone %><br><br>
+
+   <%= form.hidden_field :role, :value=>"s" %>
+
+   <%= form.submit "Update",:class=>"btn btn-primary" %>
+
+<% end %>

@@ -1,0 +1,7 @@
+$('#category').append('<%=escape_javascript(text_field_tag :category ,@temp.category,:disabled=>true)%>');
+$('#equipment').append('<%=escape_javascript(text_field_tag :equipment ,@temp.equip,:disabled=>true)%>');
+$('#qty').append('<%=escape_javascript(number_field_tag :qty ,@temp.qty,:disabled=>true)%>');
+$('#unit_cost').append('<%=escape_javascript(number_field_tag :unit ,@temp.unit_price,:disabled=>true)%>');
+$('#total_cost').append('<%=escape_javascript(number_field_tag :total ,@temp.total_price,:disabled=>true)%>');
+$('#remove').append("<button id='delete'>delete</button>");
+window.location.reload();

@@ -1,0 +1,2 @@
+$('#show_price').html('<%=escape_javascript(number_field_tag :unit_price ,@cost.cost,:disabled=>true)%>');
+$('#total').html('<%=escape_javascript(text_field_tag :total_price ,@cost.cost,:disabled=>true)%>');

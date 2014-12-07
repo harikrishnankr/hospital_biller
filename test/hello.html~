@@ -1,0 +1,39 @@
+<html>
+<head>
+   <script src="/biller/jsPDF-master/jquery-2.1.1.js"></script>
+    <script src="/biller/jsPDF-master/jspdf.js"></script>
+    <script src="/biller/jsPDF-master/jspdf.plugin.standard_fonts_metrics.js"></script>
+    <script src="/biller/jsPDF-master/jspdf.plugin.split_text_to_size.js"></script>
+    <script src="/biller/jsPDF-master/jspdf.plugin.from_html.js"></script>
+    <title></title>
+</head>
+<body>
+        <div id="content">
+            <h3>Hello, this is a H3 tag</h3>
+            <p>a pararaphskjvbkjsbdkvbksjddbvjkbsddkjbvkjbsd
+sdvkjbsdkjvbsdkjvbkjsdbkjvbsdkjbvkjsbdkjvbkjsddbvkjbsddkvbksbkvjbsdkjvbkjsvkjbsddkjvkjsdbkvjbskjbkjs</p>
+            <button>jsacjhsavcjhv</button>
+        </div>
+        <div id="editor"></div>
+        <button id="cmd">generate PDF</button>
+<script>
+        $(document).ready(function () {
+                var doc = new jsPDF();
+                var specialElementHandlers = {
+                    '#editor': function (element, renderer) {
+                        return true;
+                    }
+                };
+ 
+                $('#cmd').click(function () {
+                    doc.fromHTML($('#content').html(), 15, 15, {
+                        'width': 170,
+                        'elementHandlers': specialElementHandlers
+                    });
+                    doc.output('dataurlnewwindow');
+                });
+        });
+    </script>
+</body>
+</html>
+

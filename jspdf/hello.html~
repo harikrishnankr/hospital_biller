@@ -1,0 +1,40 @@
+<html>
+ <head>
+<script type="text/javascript" src="jspdf.js"></script>
+<script type="text/javascript" src="/libs/base64.js"></script>
+<script type="text/javascript" src="/libs/sprintf.js"></script>
+<script type="text/javascript" src="/assets/jspdf.plugin.standard_fonts_metrics.js"></script>
+  <script type="javascript">
+$(document).ready(function(){
+$("#clk").on("click",function(){
+   var doc = new jsPDF();          
+var elementHandler = {
+  '#ignorePDF': function (element, renderer) {
+    return true;
+  }
+};
+var source = window.document.getElementsByTagName("body")[0];
+doc.fromHTML(
+    source,
+    15,
+    15,
+    {
+      'width': 180,'elementHandlers': elementHandler
+    });
+
+doc.output("dataurlnewwindow");
+ }
+});
+});
+ </script>
+ </head>
+ <body>
+<button id="clk">click</button>
+    <p id="ignorePDF">don't print this to pdf</p>
+    <div>
+      <p><font size="3" color="red">print this to pdf</font></p>
+    </div>
+  shachsvhcvsjcvjhvsdjchvsvchjsdvvvvvvvvvvvvvvvvvvvvvvvvvvchjdczxlkcasnskkl
+xzkj bxkj bkjxbkj bkjxbk jbxkjbsdkjb
+ </body>
+</html>

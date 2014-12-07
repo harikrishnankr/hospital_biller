@@ -1,0 +1,14 @@
+<h1>add type</h1>
+<%= link_to supervisor_back_path do%>
+      <span>back</span>
+<%end%>
+<%= form_for @equip=Equip.new, :url=>supervisor_add_equipattr_path, method: :post do |e|%>
+     <%=e.label :serial_no %><br>
+     <%= e.text_field :serial_no %><br><br>
+     <%=e.label :name %><br>
+     <%= e.text_field :name %><br><br>
+     <%=e.label :cost%><br>
+     <%= e.text_field :cost %><br><br>
+     <%= e.hidden_field :usage, :value=>0 %>
+  <%= e.submit "Add",:class=>"btn btn-primary" %>
+  <%end%>

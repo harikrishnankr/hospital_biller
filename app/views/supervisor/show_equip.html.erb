@@ -1,0 +1,32 @@
+<h1>The Equipments in Database Are</h1>
+<%= link_to supervisor_index_path,:class=>"btn btn-primary" do%>
+      <span style="color:white">&larr;back</span>
+ <%end%>
+ <br><br>
+ <%if @cat%>  
+  <h2><%=@cat.type_name%></h2>
+  
+  <table class="table table-hover table-bordered">
+  <tr>
+    <th>serial no</th>
+    <th>name</th>
+    <th>cost</th>
+    <th>usage</th>
+    <th>change cost</th>
+    <th>reset usage</th>
+    <th>delete</th>
+  </tr>
+ 
+  <% @equip_total.each do |d| %>
+    <tr>
+      <td><%= d.serial_no %></td>
+      <td><%= d.name %></td>
+      <td><%= d.cost %></td>
+      <th><%= d.usage%></th>
+      <td><%=link_to "Edit","/equipment/update/#{d.id}",method: :get,:class=>"btn btn-small btn-primary"%></td>
+      <td><%=link_to "Reset","/equipment/reset/#{d.id}",method: :post,:class=>"btn btn-small btn-info"%></td>
+      <td><%=link_to "Delete","/equipment/delete/#{d.id}",method: :post,:class=>"btn btn-small btn-danger"%></td>
+    </tr>
+  <% end %>
+</table>
+<% end %>

@@ -1,0 +1,5 @@
+$('#category').append('<%=escape_javascript(text_field_tag :category ,@category.type_name,:disabled=>true)%>');
+$('#equipment').append('<%=escape_javascript(text_field_tag :equipment ,@equip.name,:disabled=>true)%>');
+$('#qty').append('<%=escape_javascript(number_field_tag :qty ,@qty,:disabled=>true)%>');
+$('#unit_cost').append('<%=escape_javascript(number_field_tag :unit ,@unit_price,:disabled=>true)%>');
+$('#total_cost').append('<%=escape_javascript(number_field_tag :total ,@total_price,:disabled=>true)%>');

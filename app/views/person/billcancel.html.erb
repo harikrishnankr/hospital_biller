@@ -1,0 +1,109 @@
+<html>
+<head>   
+</head>
+<body>
+  <div id="content">
+	<%=link_to "back",receptionnist_index_path,:class=>"btn btn-small btn-primary"%>
+	<p id="error" style="color:red;font-weight:bold;"></p>
+	<h3>Select the equipment and quantity as per bill file(bill number.txt)</h3>	
+	<div style="float:right;">
+		<h5 id="reason-head">Reason for cancellling the equipment</h5>
+		<%=text_area_tag :reason,"",{:id=>"reason"}%>
+	</div>
+	<table class="table table-bordered" id="table-add">
+    	<thead>
+      	<tr><th>Category</th><th>Equipment</th><th>Qty</th><th>Unit Cost</th><th>Total Cost</th><th></th></tr>
+    	</thead>
+    	<tbody>
+      	<tr>
+       	 	<th><%= collection_select(nil, :category_id, @categories, :id, :type_name, {:prompt => "Select a Category"},{:id=>'category_select',autofocus: true})%></th>
+        	<th><%= collection_select(nil, :equip_id, @equips, :id, :name, {:prompt => "Select an equipment"},{:id=>'equip_select'})%></th>
+       		<th><%=number_field_tag :quantity,1,{:class=>"quantity"}%></th>
+        	<th id="show_price"></th>
+       		<th id="total"></th>
+        	<%= hidden_field_tag :flag,"set"%>
+        	<th><button id="clk">cancel-</button></th>
+      	</tr>
+    	</tbody>
+  	</table>
+  	<h3>Canceled Items</h3>
+  	<table class="table table-bordered" style="border-bottom:1px solid black;">
+      	<thead>
+        	<th>Category</th>
+        	<th>Equipment</th>
+        	<th>Qty</th>
+        	<th>Unit Cost</th>
+        	<th>Total Cost</th>
+        	<th></th>
+      	</thead>
+      	<tbody class="bill_item">
+      	<tr>
+        	<td id="category"></td>
+        	<td id="equipment"></td>
+        	<td id="qty"></td>
+        	<td id="unit_cost"></td>
+        	<td id="total_cost"></td>
+      	</tr>
+      	</tbody>
+    	</table>
+    </div>
+    <div id="editor"></div>
+  <script type="text/javascript">
+    $(document).ready(function(){
+    	$('#category_select').change(function(){
+     		$.ajax({
+     	 		url: "<%= update_billequip_path %>",
+      			data :{
+        			category_id: $("#category_select").val()
+     			 },
+      			dataType:"script"
+     		});
+    	});
+   		$('#equip_select').change(function(){
+     		 $.ajax({
+        	 url:"<%=cost_billselect_path%>",
+        	 data:{
+          		equip_id: $('#equip_select').val()
+        	 },
+        	 dataType: "script"
+      		});
+   		});
+   		$('.quantity').change(function(){
+      		var x=parseFloat($('#unit_price').val());
+      		var y=parseFloat($(this).val());
+      		x=x*y;
+      		$('#total_price').val(parseFloat(x).toFixed(2));
+   		});
+   		$('#clk').on("click",function(){
+    	if($('#reason').val().length>=10)
+     		{
+    			$.ajax({ 
+      			url: "<%= cancel_path %>",
+      			data:{
+        			category_id : $('#category_select').val(),
+        			equip_id : $('#equip_select').val(),
+        			quantity : $('.quantity').val(),
+        			unit_cost : $("#unit_price").val(),
+        			total_cost : $('#total_price').val(), 
+        			reason :$('#reason').val()
+     		 	},
+      			dataType:"script"
+    			});
+    		$('#reason').val("");
+    		$('#error').html("");
+           }
+     	else if($('#reason').val().length<10)
+    		 {
+     			$('#reason').css({"border-color":"red","border-width":"3px"});
+     			$('#reason-head').css("color","red");
+     			$("#error").html("ERROR:Reason should contain atleast 10 letters ");
+    		 }
+     	else
+      		{
+         		$("#error").html("ERROR:Reason Can't Leave Empty ");
+     		 }
+ 		});
+	});
+   </script>
+   </body>
+   </html>

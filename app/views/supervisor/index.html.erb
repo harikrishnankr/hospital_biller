@@ -1,0 +1,47 @@
+<h1>Hello <%=current_user.name%></h1>
+<!--sign out button start--> 
+    <%= link_to  user_sign_out_path,:class=>"btn" do%>
+       <span> Logout</span>
+    <%end%>
+<!--signout button stop-->
+<!--adding new receptionist-->
+  <div style="float:right;">
+    <h3>Update Details</h3>
+      <%=link_to  supervisor_update_path,:class=>"btn btn-primary"  do%>
+          <span>update details</span>
+      <%end%>
+
+    <h3>Report Generation</h3>
+      <%= link_to  report_yearly_path,:class=>"btn" do%>
+          <span> Yearly</span>
+      <%end%>
+      <%= link_to  report_monthly_path,:class=>"btn" do%>
+         <span> Monthly</span>
+      <%end%>
+      <%= link_to  report_daily_path,:class=>"btn" do%>
+           <span> Daily</span>
+      <%end%>
+
+    <h3>Show equipments</h3>
+      <%= form_tag(supervisor_show_equipment_path, method: :get) do%>
+          <%=select("equip_type", "type_id", Category.all.collect {|p| [ p.type_name, p.id ] }, {prompt: 'select type name'})%>
+          <%=submit_tag "Go!",:class=>"btn btn-success" %>
+      <%end%>
+  </div>
+
+  <h3>Add New Receptionist</h3>
+      <%= link_to supervisor_new_rec_path ,:class=>"btn btn-primary" do%>
+        <span>create receptionist</span>
+      <%end%>
+
+  <h3>Show Receptionist</h3>
+      <%= link_to supervisor_show_receptionist_path,:class=>"btn btn-primary"  do%>
+        <span>show</span>
+      <%end%>
+
+  <h3>Add New Type of Equipment</h3>
+      <%= form_tag(supervisor_add_type_path, method: :post) do%>
+        <%=label_tag :type_name %><br>
+        <%= text_field_tag :type_name %><br><br>
+        <%=submit_tag "Add", :class=>"btn btn-primary"%>
+      <%end%>
