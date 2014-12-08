@@ -12,16 +12,17 @@
       <%end%>
 
     <h3>Report Generation</h3>
-      <%= link_to  report_yearly_path,:class=>"btn" do%>
-          <span> Yearly</span>
-      <%end%>
-      <%= link_to  report_monthly_path,:class=>"btn" do%>
-         <span> Monthly</span>
-      <%end%>
-      <%= link_to  report_daily_path,:class=>"btn" do%>
-           <span> Daily</span>
-      <%end%>
-
+         <div class="btn-group">
+           <%= link_to  report_yearly_path,:class=>"btn btn-primary" do%>
+             <span> Yearly</span>
+           <%end%>
+           <%= link_to  report_monthly_path,:class=>"btn btn-primary" do%>
+                <span> Monthly</span>
+           <%end%>
+           <%= link_to  report_daily_path,:class=>"btn btn-primary" do%>
+              <span> Daily</span>
+           <%end%>
+        </div>
     <h3>Show equipments</h3>
       <%= form_tag(supervisor_show_equipment_path, method: :get) do%>
           <%=select("equip_type", "type_id", Category.all.collect {|p| [ p.type_name, p.id ] }, {prompt: 'select type name'})%>
@@ -42,6 +43,6 @@
   <h3>Add New Type of Equipment</h3>
       <%= form_tag(supervisor_add_type_path, method: :post) do%>
         <%=label_tag :type_name %><br>
-        <%= text_field_tag :type_name %><br><br>
+        <%= text_field_tag :type_name %>
         <%=submit_tag "Add", :class=>"btn btn-primary"%>
       <%end%>

@@ -6,6 +6,8 @@ class CreateEquips < ActiveRecord::Migration
       t.string :name
       t.integer :cost
       t.integer :usage ,:default=>0
+      t.integer :bpl
+      t.integer :other
       t.timestamps
     end
   end

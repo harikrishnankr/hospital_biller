@@ -1,0 +1,9 @@
+<h1>enter the new cost</h1>
+<%= link_to supervisor_show_equipment_path,:class=>"btn btn-primary" do%>
+   <span>back</span>
+   <%end%>
+<%= form_tag(equipment_new_cost_othr_path, method: :post) do%>
+     <%=label_tag :new_cost %><br>
+     <%= number_field_tag :ncost_othr %><br><br>
+     <%=submit_tag "Go!",:class=>"btn btn-success" %>
+  <%end%>

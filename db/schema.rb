@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141206044943) do
+ActiveRecord::Schema.define(version: 20141207154435) do
 
   create_table "categories", force: true do |t|
     t.string   "type_name"
@@ -27,6 +27,8 @@ ActiveRecord::Schema.define(version: 20141206044943) do
     t.datetime "updated_at"
     t.integer  "category_id"
     t.integer  "usage"
+    t.integer  "bpl"
+    t.integer  "other"
   end
 
   create_table "people", force: true do |t|
@@ -41,6 +43,7 @@ ActiveRecord::Schema.define(version: 20141206044943) do
     t.integer  "cost"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "bench"
   end
 
   create_table "sums", force: true do |t|
@@ -59,6 +62,7 @@ ActiveRecord::Schema.define(version: 20141206044943) do
     t.string   "address"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "bench"
   end
 
   create_table "temps", force: true do |t|
@@ -81,4 +85,5 @@ ActiveRecord::Schema.define(version: 20141206044943) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
 end

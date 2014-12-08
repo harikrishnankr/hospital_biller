@@ -19,8 +19,12 @@ Rails.application.routes.draw do
   get "supervisor/show_equipment" =>'supervisor#show_equip'
   get "supervisor/show_select" => 'supervisor#show_select'
   
-  get "equipment/update/:id"=>'equip#update_cost'
+  get  "equipment/update/:id"=>'equip#update_cost'
+  get  "equipment/update_bpl/:id"=>'equip#update_cost_bpl'
+  get "equipment/update_othr/:id"=>'equip#update_cost_othr'
   post "equipment/new_cost" => 'equip#new_cost'
+  post "equipment/new_cost_othr" => 'equip#new_cost_othr'
+  post "equipment/new_cost_bpl" => 'equip#new_cost_bpl'
   post "equipment/delete/:id" =>'equip#delete'
   post "equipment/reset/:id"=>'equip#reset'
 
@@ -33,6 +37,7 @@ Rails.application.routes.draw do
   get "temp_add"=>'receptionnist#temp_add'
   post "delete_item/:id"=>'receptionnist#delete_item'
   post "receptionnist/print"=>'receptionnist#print'
+  post "receptionnist/cancel"=>'receptionnist#cancel'
   get "receptionnist/billno"=>'receptionnist#billno'
   post "person/billcancel"=>'person#billcancel'
 

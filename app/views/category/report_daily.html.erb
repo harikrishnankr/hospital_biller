@@ -1,1 +1,30 @@
 <h1>Daily</h1>
+ <table class="table table-hover table-bordered">
+  <tr>
+    <th>billno</th>
+    <th>name</th>
+    <th>age</th>
+    <th>gender</th>
+    <th>category</th>
+    <th>address</th>
+    <th>opno</th>
+    <th>ipno</th>
+    <th>wardno</th>
+    <th>cost</th>
+  </tr>
+ 
+  <% @person.each do |d| %>
+    <tr>
+      <td><%= d.billno%></td>
+      <td><%= d.name %></td>
+      <td><%= d.age %></td>
+      <td><%= d.gender %></td>
+      <td><%= d.bench %></td>
+      <td><%= d.address %></td>
+      <td><%= d.opno%></td>
+      <td><%= d.ipno%></td>
+      <td><%= d.wardno%></td>
+      <td><%= d.cost%></td>
+    </tr>
+  <% end %>
+</table>

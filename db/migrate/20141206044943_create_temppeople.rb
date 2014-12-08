@@ -8,7 +8,7 @@ class CreateTemppeople < ActiveRecord::Migration
       t.string :ipno
       t.string :wardno
       t.string :address
-
+      t.string :bench
       t.timestamps
     end
   end

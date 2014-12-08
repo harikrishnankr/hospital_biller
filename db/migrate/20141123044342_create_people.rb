@@ -10,7 +10,7 @@ class CreatePeople < ActiveRecord::Migration
       t.string :wardno
       t.string :billno
       t.integer :cost
-      
+      t.string :bench
       t.timestamps
     end
   end

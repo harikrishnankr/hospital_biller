@@ -7,8 +7,12 @@
      <%= e.text_field :serial_no %><br><br>
      <%=e.label :name %><br>
      <%= e.text_field :name %><br><br>
-     <%=e.label :cost%><br>
+     <%=e.label :apl_cost%><br>
      <%= e.text_field :cost %><br><br>
+     <%=e.label :bpl_cost%><br>
+     <%= e.text_field :bpl %><br><br>
+     <%=e.label :other%><br>
+     <%= e.text_field :other %><br><br>
      <%= e.hidden_field :usage, :value=>0 %>
   <%= e.submit "Add",:class=>"btn btn-primary" %>
   <%end%>

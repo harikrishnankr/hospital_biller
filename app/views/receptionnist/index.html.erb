@@ -24,7 +24,6 @@
     <%=submit_tag "BILL-CANCEL",:class=>"btn btn-danger"%>
   <%end%>
   </div><br>
-  
 <p hidden id="hos_name" style="text-align:center;font-size:20px;font-weight:bold;"></p><br>
 <!--signout button stop-->
 <%@bill_no=Time.now.to_i%>
@@ -38,12 +37,13 @@
    <%=e.text_field :age,:class=>"adj1"%>
    <%=e.label :gender%>:-
    <%=e.text_field :gender,:class=>"adj1"%>
-    <%=e.label :opno%>:-
+   <%=select("bench", "bench", options_for_select([["bpl", "bpl"], ["apl", "apl"],["other","other"]]), {prompt: 'select category'})%>
+   <%=e.label :opno%>:-
    <%=e.text_field :opno,:class=>"adj1"%>
    <%=e.label :ipno%>:-
    <%=e.text_field :ipno,:class=>"adj1"%>
    <%=e.label :wardno%>:-
-   <%=e.text_field :wardno,:class=>"adj1"%>
+   <%=e.text_field :wardno,:class=>"adj1"%><br>
    <%=e.label :address%>:-
    <%=e.text_field :address%>
    <%=e.submit "process",:class=>"btn btn-success",:id=>"submit"%>
@@ -52,13 +52,13 @@
   <label>Name:-    </label>  <span><%=@p.name%></span>
   <label>Age:-     </label>  <span><%=@p.age%></span>
   <label>gender:-  </label>  <span><%=@p.gender%></span>
+  <label>category:-  </label>  <span><%=@p.bench%></span>
   <label>opno:-    </label>  <span><%=@p.opno%></span>
   <label>ipno:-    </label>  <span><%=@p.ipno%></span>
   <label>wardno:-  </label>  <span><%=@p.wardno%></span>
   <label>address:- </label>  <span><%=@p.address%></span>
 <%end%>
   <br><br>
-
   <table class="table table-bordered" id="table-add">
     <thead>
       <tr><th>Category</th><th>Equipment</th><th>Qty</th><th>Unit Cost</th><th>Total Cost</th><th></th></tr>
@@ -103,6 +103,7 @@
     </table>
     </div>
   <%=link_to 'PRINT',receptionnist_print_path,method: :post,:class=>"btn btn-info",:id=>"print"%>
+  <%=link_to 'CANCEL',receptionnist_cancel_path,method: :post,:class=>"btn btn-danger"%>
  <script type="text/javascript">
   $(document).ready(function(){
     $('#category_select').change(function(){

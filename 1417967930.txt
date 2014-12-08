@@ -1,0 +1,7 @@
+Bill No:-1417967930
+IN THE ORDER(Category 	Equipment 	Qty  Unit Cost 	Total cost)
+(1)casuality	casuality op	2	10	20
+(2)casuality	casuality op	1	10	10
+
+
+***********[PLEASE NOTE THIS IS A JUNK FILE DELETE AFTER USE}*********************

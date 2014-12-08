@@ -10,7 +10,9 @@
   <tr>
     <th>serial no</th>
     <th>name</th>
-    <th>cost</th>
+    <th>apl cost</th>
+    <th>bpl cost</th>
+    <th>others</th>
     <th>usage</th>
     <th>change cost</th>
     <th>reset usage</th>
@@ -22,8 +24,14 @@
       <td><%= d.serial_no %></td>
       <td><%= d.name %></td>
       <td><%= d.cost %></td>
-      <th><%= d.usage%></th>
-      <td><%=link_to "Edit","/equipment/update/#{d.id}",method: :get,:class=>"btn btn-small btn-primary"%></td>
+      <td><%= d.bpl %></td>
+      <td><%= d.other%></td>
+      <td><%= d.usage%></td>
+      <td>
+          <%=link_to "APL","/equipment/update/#{d.id}",method: :get,:class=>"btn btn-small btn-primary"%>
+          <%=link_to "BPL","/equipment/update_bpl/#{d.id}",method: :get,:class=>"btn btn-small btn-primary"%>
+          <%=link_to "OTHERS","/equipment/update_othr/#{d.id}",method: :get,:class=>"btn btn-small btn-primary"%>
+      </td>
       <td><%=link_to "Reset","/equipment/reset/#{d.id}",method: :post,:class=>"btn btn-small btn-info"%></td>
       <td><%=link_to "Delete","/equipment/delete/#{d.id}",method: :post,:class=>"btn btn-small btn-danger"%></td>
     </tr>

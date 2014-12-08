@@ -1,6 +1,4 @@
 source 'https://rubygems.org'
-
-
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.1'
 # Use sqlite3 as the database for Active Record
@@ -29,8 +27,6 @@ gem "twitter-bootstrap-rails","~>3.2.0"
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 #gem 'wkhtmltopdf-binary'
-gem 'wicked_pdf'
-gem 'wkhtmltopdf-binary'
 #gem 'jquery-rails', '~> 4.0.0'
 #gem 'rails-ajax'
 #gem "therubyracer"

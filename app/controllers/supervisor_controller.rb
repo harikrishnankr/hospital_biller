@@ -7,6 +7,7 @@ class SupervisorController < ApplicationController
    end 
 
    def add_equipment_type
+    #flash[:notice]="name=#{params[:type_name]}"
     if current_user
        session[:new_type]=params[:type_name]
      if params[:type_name].blank?
@@ -20,18 +21,22 @@ class SupervisorController < ApplicationController
 
    def back
    	 redirect_to supervisor_index_path
-   end    
+   end 
+
    def add_equipattr
     if current_user
      find=Category.find_by_type_name(session[:new_type])
      if !find
        @category=Category.new()
        @category.type_name=session[:new_type]
+       @category.save
        find=@category
      end
-       #flash[:notice]="#{find.type_name}"
+       #flash[:notice]="#{find.type_name}&#{find.id}"
        if find
          @equipment=find.equips.new(equip_params)
+         #@equipment.category_id=@category.id
+         #flash[:notice]="#{@equipment.name}&#{find.id}"
          if @equipment.save
            flash[:notice]="successfully added #{@equipment.name}"
          else
@@ -68,6 +73,6 @@ class SupervisorController < ApplicationController
    end
    private
    def equip_params
-       params.require(:equip).permit(:serial_no,:name,:cost,:usage)
+       params.require(:equip).permit(:serial_no,:name,:cost,:bpl,:other,:usage)
    end
 end

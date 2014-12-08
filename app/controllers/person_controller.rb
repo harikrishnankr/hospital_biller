@@ -17,11 +17,11 @@ class PersonController < ApplicationController
 		if params[:billno]
         	@person=Person.find_by_billno(params[:billno])
         	if @person
-				session[:billno]=params[:billno]
-			else
-	    		flash[:error]="You trying to enter #{DateTime.strptime(params[:billno],'%s')} dated bill,try something correct....!"
-	    		redirect_to :back
-    		end
+				     session[:billno]=params[:billno]
+			    else
+	    		   flash[:error]="You trying to enter #{DateTime.strptime(params[:billno],'%s')} dated bill,try something correct....!"
+	    		   redirect_to :back
+    		  end
  		end
  end
  def update_billequip
@@ -29,7 +29,14 @@ class PersonController < ApplicationController
  		@equips=category.equips.map { |e| [e.name,e.id] }.insert(0,"select an equipment")
  end
  def cost_billselect
- 		@cost=Equip.find(params[:equip_id])
+  p=Person.find_by_billno(session[:billno])
+  if p.bench=="apl"
+ 		@cost=Equip.find(params[:equip_id]).cost
+  elsif p.bench=="bpl"
+    @cost=Equip.find(params[:equip_id]).bpl
+  else
+    @cost=Equip.find(params[:equip_id]).other
+  end
  end
  def cancel
  	   @person=Person.find_by_billno(session[:billno])
@@ -67,6 +74,6 @@ class PersonController < ApplicationController
  end
   private
    def person_params
-    params.require(:person).permit(:name,:age,:gender,:opno,:ipno,:wardno,:address)
+    params.require(:person).permit(:name,:age,:gender,:bench,:opno,:ipno,:wardno,:address)
    end
 end

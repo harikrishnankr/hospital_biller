@@ -20,7 +20,14 @@ class ReceptionnistController < ApplicationController
  		@equips=category.equips.map { |e| [e.name,e.id] }.insert(0,"select an equipment")
  	end
  	def show_price
- 		@cost=Equip.find(params[:equip_id])
+        t=Tempperson.find(1)
+        if t.bench=="apl"
+ 	       @cost=Equip.find(params[:equip_id]).cost
+       elsif t.bench=="bpl"
+           @cost=Equip.find(params[:equip_id]).bpl
+       else
+          @cost=Equip.find(params[:equip_id]).other
+      end
  	end
  	def temp_add
  		@temp=Temp.new
@@ -100,25 +107,35 @@ class ReceptionnistController < ApplicationController
           	b.age=t.age
           	b.opno=t.opno
           	b.ipno=t.ipno
-         	b.wardno=t.wardno
-         	b.gender=t.gender
-         	b.address=t.address
-         	b.billno=params[:bill_no]
-         	b.cost=Sum.find(1).total
-         	b.save
-         	@temp=Temp.all
-        	 @temp.each do |t|
+         	  b.wardno=t.wardno
+         	  b.gender=t.gender
+         	  b.address=t.address
+         	  b.billno=params[:bill_no]
+            b.bench=t.bench
+         	  b.cost=Sum.find(1).total
+         	  b.save
+         	  @temp=Temp.all
+        	  @temp.each do |t|
         		name=Equip.find_by_name(t.equip)
         		name.usage=name.usage+t.qty
         		name.save
          	end
         end
-        #mode="w"
- 		#path=params[:bill_no].to_S
- 		#path=path+".txt"
- 		#f=File.new("mho.txt",mode)
- 		#f.write("sdkvjcbsdvbjdffbvjdb")
- 		#flash[:notice]="#{File.expand_path('hrk.txt')}"
- 		#f.close
  	end
+  def cancel
+    Temp.destroy_all
+    t=Tempperson.find(1)
+    t.name=""
+    t.age=""
+    t.gender=""
+    t.opno=""
+    t.ipno=""
+    t.wardno=""
+    t.address=""
+    t.save
+    s=Sum.find(1)
+    s.total=0
+    s.save
+    redirect_to :back
+  end
 end
